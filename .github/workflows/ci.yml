@@ -177,8 +177,14 @@ jobs:
 
       - name: Apply K8s Manifests to Kind Cluster
         run: |
-          # 1. 套用專案中的 K8s 設定檔
+          # 1. 先建立所需的 namespace
+          kubectl create namespace inventory
+
+          # 2. 套用專案中的 K8s 設定檔
           kubectl apply -f inventory-k8s/
+
+          # 3. 檢查 Pods 狀態 (加上 -n inventory 查看專屬命名空間)
+          kubectl get pods -n inventory
           
-          # 2. 檢查 Pods 狀態
-          kubectl get pods -A
+          # 3. 檢查 Pods 狀態
+          # kubectl get pods -A
