@@ -174,7 +174,7 @@ jobs:
       - name: Update kubeconfig for EKS
         run: |
           # 替換為您的 EKS Cluster 名稱（例如 my-k8s-cluster）
-          aws eks update-kubeconfig --region ap-northeast-1 --name my-k8s-cluster
+          aws eks update-kubeconfig --region ap-northeast-1 --name my-app-cluster
 
       - name: Apply K8s Manifests & Restart Deployment
         run: |
