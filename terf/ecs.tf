@@ -61,6 +61,12 @@ resource "aws_iam_policy" "ecs_execution_secrets_policy" {
   })
 }
 
+# 將 Secrets 讀取權限附加給 Task Role (供 Python boto3 使用)
+resource "aws_iam_role_policy_attachment" "attach_secrets_to_task_role" {
+  role       = aws_iam_role.ecs_task_role.name
+  policy_arn = aws_iam_policy.ecs_execution_secrets_policy.arn
+}
+
 resource "aws_iam_role_policy_attachment" "attach_secrets_to_execution" {
   role       = aws_iam_role.ecs_execution_role.name
   policy_arn = aws_iam_policy.ecs_execution_secrets_policy.arn
