@@ -55,23 +55,23 @@ resource "aws_iam_policy" "ecs_execution_secrets_policy" {
       {
         Effect   = "Allow"
         Action   = ["secretsmanager:GetSecretValue"]
-        Resource = [aws_secretsmanager_secret.db_secret.arn] # 👈 Precisely target exclusive Secret ARN
+        Resource = "*"
       }
     ]
   })
 }
 
-# 將 Secrets 讀取權限附加給 Task Role (供 Python boto3 使用)
-resource "aws_iam_role_policy_attachment" "attach_secrets_to_task_role" {
-  role       = aws_iam_role.ecs_task_role.name
-  policy_arn = aws_iam_policy.ecs_execution_secrets_policy.arn
-}
-
+# 2c.掛載給 Execution Role (ECS Agent 升級/環境變數用)
 resource "aws_iam_role_policy_attachment" "attach_secrets_to_execution" {
   role       = aws_iam_role.ecs_execution_role.name
   policy_arn = aws_iam_policy.ecs_execution_secrets_policy.arn
 }
 
+# 2d 掛載給 Task Role (Python boto3 程式碼用)
+resource "aws_iam_role_policy_attachment" "attach_secrets_to_task_role" {
+  role       = aws_iam_role.ecs_task_role.name
+  policy_arn = aws_iam_policy.ecs_execution_secrets_policy.arn
+}
 # ==========================================
 # 3. ECS Cluster
 # ==========================================
