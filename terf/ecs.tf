@@ -61,13 +61,13 @@ resource "aws_iam_policy" "ecs_execution_secrets_policy" {
   })
 }
 
-# 2c.掛載給 Execution Role (ECS Agent 升級/環境變數用)
+# 2c.Mounted to the Execution Role (for ECS Agent upgrades/environmental changes)
 resource "aws_iam_role_policy_attachment" "attach_secrets_to_execution" {
   role       = aws_iam_role.ecs_execution_role.name
   policy_arn = aws_iam_policy.ecs_execution_secrets_policy.arn
 }
 
-# 2d 掛載給 Task Role (Python boto3 程式碼用)
+# 2d. Mounted to a Task Role (used by Python boto3 code)
 resource "aws_iam_role_policy_attachment" "attach_secrets_to_task_role" {
   role       = aws_iam_role.ecs_task_role.name
   policy_arn = aws_iam_policy.ecs_execution_secrets_policy.arn

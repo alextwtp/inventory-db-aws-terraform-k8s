@@ -21,7 +21,8 @@ def get_db_secret():
         print(f"Error fetching secret from AWS: {e}")
         raise e
 
-# 優先讀取環境變數（適用於 Local / Kubernetes K8s Secret 注入），若無則降級向 AWS Secrets Manager 讀取
+# Get the environment variables.If none are found, degrade to reading from AWS Secrets Manager.
+
 if os.getenv("DB_HOST"):
     DB_USER = os.getenv("DB_USER", "root")
     DB_PASSWORD = os.getenv("DB_PASSWORD", "")

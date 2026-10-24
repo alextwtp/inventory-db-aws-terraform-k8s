@@ -169,7 +169,7 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-      # 🚀 在 Runner 中啟動免費的 Kind (Kubernetes) 集群進行 Manifests 測試
+      # 🚀 Launch a free Kind (Kubernetes) cluster in the Runner to perform Manifests testing.
       - name: Create local Kind Cluster in CI
         uses: helm/kind-action@v1.8.0
         with:
@@ -177,14 +177,14 @@ jobs:
 
       - name: Apply K8s Manifests to Kind Cluster
         run: |
-          # 1. 先建立所需的 namespace
+          # 1. Create the required namespace first.
           kubectl create namespace inventory
 
-          # 2. 套用專案中的 K8s 設定檔
+          # 2. # 2. Apply the Kubernetes configuration file from the project.
           kubectl apply -f inventory-k8s/
 
-          # 3. 檢查 Pods 狀態 (加上 -n inventory 查看專屬命名空間)
+          # 3. Check the status of Pods (add -n inventory to view their dedicated namespaces).
           kubectl get pods -n inventory
           
-          # 3. 檢查 Pods 狀態
+          # 3. Check the status of Pods.
           # kubectl get pods -A
