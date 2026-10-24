@@ -26,11 +26,15 @@ def get_db_secret():
 # 2. Get AWS Credentials
 db_config = get_db_secret()
 
-DB_USER = db_config["DB_USER"]
-DB_PASSWORD = db_config["DB_PASSWORD"]
-DB_HOST = db_config["DB_HOST"]
-DB_PORT = db_config["DB_PORT"]
-DB_NAME = db_config["DB_NAME"]
+# 2. Get AWS Credentials
+db_config = get_db_secret()
+
+# 使用 .get() 自動對齊大小寫與 common keys，避免 KeyError
+DB_USER     = db_config.get("DB_USER") or db_config.get("username") or db_config.get("user")
+DB_PASSWORD = db_config.get("DB_PASSWORD") or db_config.get("password")
+DB_HOST     = db_config.get("DB_HOST") or db_config.get("host")
+DB_PORT     = int(db_config.get("DB_PORT") or db_config.get("port") or 3306)
+DB_NAME     = db_config.get("DB_NAME") or db_config.get("dbname") or db_config.get("database") or "inventory"
 
 DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
