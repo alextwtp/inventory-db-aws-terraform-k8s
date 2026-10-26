@@ -29,7 +29,7 @@ class InventoryRequest(BaseModel):
     @field_validator("pid")  
     @classmethod
     def validate_and_upper_pid(cls, v: str) -> str:
-        # 1. Remove leading and trailing whitespace     app1234
+        # 1. Remove leading and trailing whitespace    
         cleaned_v = v.strip()
           
         # 2. Check if it is an empty string
