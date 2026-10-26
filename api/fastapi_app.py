@@ -82,7 +82,7 @@ def success_response(data, message=None):
 # ------------------------
 # Get item by product ID
 # ------------------------
-@app.get("/")                               # Health check endpoint
+@app.get("/")                             # Health check endpoint
 def read_root():
     return {"hello": "world"}
 
