@@ -180,11 +180,11 @@ jobs:
           # 1. Create the required namespace first.
           kubectl create namespace inventory
 
-          # 2. # 2. Apply the Kubernetes configuration file from the project.
+          # 2. Apply the Kubernetes configuration file from the project.
           kubectl apply -f inventory-k8s/
 
           # 3. Check the status of Pods (add -n inventory to view their dedicated namespaces).
           kubectl get pods -n inventory
           
-          # 3. Check the status of Pods.
+          # 4. Check the status of Pods.
           # kubectl get pods -A
