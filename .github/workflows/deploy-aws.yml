@@ -1,9 +1,9 @@
 name: Deploy FastAPI to AWS ECR & ECS
 
-# ------------------------------------------------------
+# -----------------------------------------------------
 #  Triggering conditions: Add paths filtering to avoid 
 #  accidentally triggering AWS # when modifying GCP. 
-# ------------------------------------------------------
+# -----------------------------------------------------
 on:
   push:
     branches: [ main ]
