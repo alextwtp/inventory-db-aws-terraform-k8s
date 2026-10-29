@@ -50,11 +50,14 @@ def item_response(item: Item, message: str) -> dict:
         },
     }
 
-
 @app.on_event("startup")
 def startup() -> None:
-    Base.metadata.create_all(bind=engine)
-    
+    try:
+        Base.metadata.create_all(bind=engine)
+        print("Database tables created successfully.")
+    except Exception as e:
+        print(f"Warning: Could not connect to DB on startup: {e}")
+   
 BASE_DIR = Path(__file__).resolve().parent.parent
 @app.get("/")
 async def read_index():

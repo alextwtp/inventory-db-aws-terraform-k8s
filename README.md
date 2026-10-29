@@ -352,21 +352,21 @@ python run_api.py
 Default API URL:
 
 ```text
-http://127.0.0.1:8000
+http://127.0.0.1:8080
 
 ```
 
 Interactive Swagger documentation:
 
 ```text
-http://127.0.0.1:8000/docs
+http://127.0.0.1:8080/docs
 
 ```
 ---
 
 ## 🔌 FastAPI + MySQL API Endpoints
 
-When running locally via `python run_api.py` or via Docker Compose (`http://127.0.0.1:8000`).
+When running locally via `python run_api.py` or via Docker Compose (`http://127.0.0.1:8080`).
 
 ---
 
@@ -393,7 +393,7 @@ GET /item/{pid}
 Example:
 
 ```bash
-curl http://127.0.0.1:8000/item/A001
+curl http://127.0.0.1:8080/item/A001
 
 ```
 
@@ -407,7 +407,7 @@ POST /inventory/in
 Example request:
 
 ```bash
-curl -X POST http://127.0.0.1:8000/inventory/in \
+curl -X POST http://127.0.0.1:8080/inventory/in \
   -H "Content-Type: application/json" \
   -d '{
     "pid": "A001",
@@ -429,7 +429,7 @@ POST /inventory/out
 Example request:
 
 ```bash
-curl -X POST http://127.0.0.1:8000/inventory/out \
+curl -X POST http://127.0.0.1:8080/inventory/out \
   -H "Content-Type: application/json" \
   -d '{
     "pid": "A001",
@@ -716,8 +716,8 @@ To prevent port conflicts with local database instances, application services us
   * **Container Internal Port:** `3306` (within the Docker virtual network)
   * **Host Mapped Port:** `3307` (exposed on localhost for external client connections)
 * **FastAPI Application Server:**
-  * **Container Internal Port:** `8000`
-  * **Host Mapped Port:** `8000` (accessible via `http://localhost:8000`)
+  * **Container Internal Port:** `8080`
+  * **Host Mapped Port:** `8080` (accessible via `http://localhost:8080`)
 
 ---
 
