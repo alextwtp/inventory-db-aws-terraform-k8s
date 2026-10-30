@@ -10,7 +10,7 @@ resource "aws_lb" "main" {
   }                 
 }
 
-# 2. Establish Target Group (Target Group) #
+# 2. Establish Target Group (Target Group) g
 resource "aws_lb_target_group" "ecs_tg" {
   name = "tf-ecs-target-group-v8000"
   port        = 8000
