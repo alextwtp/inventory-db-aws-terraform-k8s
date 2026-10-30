@@ -17,7 +17,7 @@ spec:
       - name: inventory-app
         image: tiangolo/uvicorn-gunicorn-fastapi:python3.10
         ports:
-        - containerPort: 8080
+        - containerPort: 8000
         envFrom:
         - configMapRef:
             name: app-config
@@ -51,7 +51,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /health
-            port: 8080
+            port: 8000
           initialDelaySeconds: 10
           periodSeconds: 10
           timeoutSeconds: 2
@@ -60,7 +60,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /health
-            port: 8080
+            port: 8000
           initialDelaySeconds: 5
           periodSeconds: 5
           timeoutSeconds: 2
@@ -75,7 +75,7 @@ spec:
   type: ClusterIP 
   ports:
   - name: http
-    port: 8080
-    targetPort: 8080
+    port: 8000
+    targetPort: 8000
   selector:
     app: inventory-app
