@@ -103,8 +103,7 @@ resource "aws_ecs_task_definition" "app_task" {
           hostPort      = 80
           protocol      = "tcp"
         }]     
-      
-
+          
       # Insensitive control items are retained in the environment section.
       environment = [
         { name = "DB_HOST", value = aws_db_instance.my_db.address },
