@@ -12,8 +12,8 @@ resource "aws_lb" "main" {
 
 # 2. Establish Target Group (Target Group)
 resource "aws_lb_target_group" "ecs_tg" {
-  name = "tf-ecs-target-group-v1"
-  port        = 80
+  name = "tf-ecs-target-group-v8000"
+  port        = 8000
   protocol    = "HTTP"
   vpc_id = var.vpc_id  
   target_type = "ip" # Must use ip type for Fargate mode
