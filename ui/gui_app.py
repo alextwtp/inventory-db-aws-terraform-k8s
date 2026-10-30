@@ -566,13 +566,13 @@ class InventoryApp:
         if mode == "IN": 
             print("🔥 call IN API")
             response = requests.post(
-                "http://127.0.0.1:8000/api/inventory/in",
+                "http://127.0.0.1:80/api/inventory/in",
                 json=payload,
             )
         else:
             print("🔥 call OUT API")
             response = requests.post(
-                "http://127.0.0.1:8000/api/inventory/out",
+                "http://127.0.0.1:80/api/inventory/out",
                 json=payload,
             )
         
